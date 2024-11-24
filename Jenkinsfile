@@ -18,6 +18,15 @@ pipeline {
                 sh 'ls -la'
             }   
         }
+
+        stage('Check Semgrep is installed') {
+            steps {
+                script {
+                    sh 'semgrep --version'
+                }
+            }
+        }
+        
         stage('[Semgrep] SAST Scan') {
             steps {
                 sh 'semgrep scan --config auto --json-output=${WORKSPACE}/sast-semgrep-scan.json'
