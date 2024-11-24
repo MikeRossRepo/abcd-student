@@ -31,14 +31,14 @@ pipeline {
             steps {
                 sh 'semgrep scan --config auto --json-output=${WORKSPACE}/sast-semgrep-scan.json'
             }
-            post {
+            //post {
                 //always {
                  //   defectDojoPublisher(artifact: 'sast-semgrep-scan.json', 
                  //       productName: 'Juice Shop', 
                  //       scanType: 'Semgrep JSON Report', 
                  //       engagementName: '')
                 //}
-            }
+            //}
         }
 
 
