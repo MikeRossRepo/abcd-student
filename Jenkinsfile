@@ -12,12 +12,6 @@ pipeline {
                 }
             }
         }
-        stage('Example') {
-            steps {
-                echo 'Hello!'
-                sh 'ls -la'
-            }   
-        }
 
         stage('Check Semgrep is installed') {
             steps {
@@ -44,6 +38,10 @@ pipeline {
             steps {
                 sh 'trufflehog git file://. --branch=main --json  > ${WORKSPACE}/secrets-trufflehog-scanner.json'
             }
+        }
+
+        tools {
+            nodejs 'NodeJS_LTS'
         }
         
         stage('[OSV] Integrity verification') {
