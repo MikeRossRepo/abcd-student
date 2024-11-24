@@ -8,7 +8,19 @@ pipeline {
     options {
         skipDefaultCheckout(true)
     }
+    
     stages {
+         stage('Setup Git Config') {
+            steps {
+                script {
+
+                    sh 'git config --global http.postBuffer 157286400'
+                    sh 'git config --global http.version HTTP/1.1'
+                }
+            }
+        }
+        
+        
         stage('Code checkout from GitHub') {
             steps {
                 script {
