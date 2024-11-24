@@ -1,5 +1,10 @@
 pipeline {
     agent any
+
+    tools {
+        nodejs 'NodeJS_LTS'
+    }
+    
     options {
         skipDefaultCheckout(true)
     }
@@ -40,9 +45,7 @@ pipeline {
             }
         }
 
-        tools {
-            nodejs 'NodeJS_LTS'
-        }
+
         
         stage('[OSV] Integrity verification') {
             steps {
