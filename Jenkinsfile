@@ -10,7 +10,7 @@ pipeline {
         stage('Code checkout from GitHub') {
             steps {
                 script {
-                    //cleanWs()
+                    cleanWs()
                     git credentialsId: 'github', url: 'https://github.com/MikeRossRepo/abcd-student', branch: 'main'
                 }
             }
@@ -48,14 +48,6 @@ pipeline {
 
             
         }
-
-
-        
-      //  stage('[OSV] Integrity verification') {
-       //     steps {
-       //         sh 'npm ci'
-       //     }
-       // }
         
         stage('[OSV] SCA Scan') {
             steps {
@@ -65,6 +57,12 @@ pipeline {
             post {
                 always {
                     sh 'cat ${WORKSPACE}/sca-osv-scanner.json'
+
+                  //   defectDojoPublisher(artifact: 'sast-semgrep-scan.json', 
+                 //       productName: 'Juice Shop', 
+                 //       scanType: 'Semgrep JSON Report', 
+                 //       engagementName: '')
+                    
                 }
             }
         }
