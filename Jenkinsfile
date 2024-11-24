@@ -6,19 +6,7 @@ pipeline {
     }
     
     stages {
-        stage('Set Git Configurations') {
-            steps {
-                script {
-                    //sh 'git config http.version HTTP/1.1'
-                    //sh 'git config http.postBuffer 500M'
-                    //sh 'git config http.maxRequestBuffer 100M'
-                    //sh 'git config core.compression 0'
-                    
-                    sh 'git config --global --list'
-                }
-            }
-        }
-        
+
         stage('Code checkout from GitHub') {
             steps {
                 script {
