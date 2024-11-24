@@ -22,7 +22,7 @@ pipeline {
         stage('Check Semgrep is installed') {
             steps {
                 script {
-                    sh 'semgrep --version'
+                    sh 'semgrep --version && pwd && ls -la ./'
                 }
             }
         }
