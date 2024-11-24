@@ -12,12 +12,6 @@ pipeline {
                 }
             }
         }
-        stage('Example') {
-            steps {
-                echo 'Hello!'
-                sh 'ls -la'
-            }
-        }
 
         stage('[DAST] ZAP passive-scan') {
             steps {
@@ -35,10 +29,10 @@ pipeline {
                     sh 'docker cp zap:/zap/wrk/reports/zap_xml_report.xml ${WORKSPACE}/zap_xml_report.xml'
                     sh 'docker stop zap juice-shop'
                     
-                    //defectDojoPublisher(artifact: 'zap_xml_report.xml', 
-                    //productName: 'Juice Shop', 
-                    //scanType: 'ZAP Scan', 
-                    //engagementName: 'info@prim.net.pl')
+                    defectDojoPublisher(artifact: '${WORKSPACE}/zap_xml_report.xml', 
+                    productName: 'Juice Shop', 
+                    scanType: 'ZAP Scan', 
+                    engagementName: 'info@prim.net.pl')
                 }
             }
         }
