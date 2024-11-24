@@ -1,22 +1,18 @@
 pipeline {
     agent any
 
-    tools {
-        nodejs 'NodeJS_LTS'
-    }
-    
     options {
         skipDefaultCheckout(true)
     }
     
     stages {
-         stage('Set Git Configurations') {
+        stage('Set Git Configurations') {
             steps {
                 script {
-                    sh 'git config http.version HTTP/1.1'
-                    sh 'git config http.postBuffer 500M'
-                    sh 'git config http.maxRequestBuffer 100M'
-                    sh 'git config core.compression 0'
+                    //sh 'git config http.version HTTP/1.1'
+                    //sh 'git config http.postBuffer 500M'
+                    //sh 'git config http.maxRequestBuffer 100M'
+                    //sh 'git config core.compression 0'
                     
                     sh 'git config --global --list'
                 }
@@ -26,8 +22,8 @@ pipeline {
         stage('Code checkout from GitHub') {
             steps {
                 script {
-                    cleanWs()
-                    git credentialsId: 'moje-repo', url: 'https://github.com/MikeRossRepo/abcd-student', branch: 'main'
+                    //cleanWs()
+                    git credentialsId: 'github', url: 'https://github.com/MikeRossRepo/abcd-student', branch: 'main'
                 }
             }
         }
