@@ -1,9 +1,9 @@
 pipeline {
     agent any
 
-    tools {
-        nodejs 'NodeJS_LTS'
-    }
+    //tools {
+    //    nodejs 'NodeJS_LTS'
+    //}
     
     options {
         skipDefaultCheckout(true)
@@ -61,11 +61,11 @@ pipeline {
 
 
         
-        stage('[OSV] Integrity verification') {
-            steps {
-                sh 'npm ci'
-            }
-        }
+      //  stage('[OSV] Integrity verification') {
+       //     steps {
+       //         sh 'npm ci'
+       //     }
+       // }
         
         stage('[OSV] SCA Scan') {
             steps {
