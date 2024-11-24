@@ -42,7 +42,7 @@ pipeline {
         }
         stage('[trufflehog] Secrets Scan') {
             steps {
-                sh 'trufflehog git file://. --branch=main --json --exclude-paths ".*\\.zip" > ${WORKSPACE}/secrets-trufflehog-scanner.json'
+                sh 'trufflehog git file://. --branch=main --json  > ${WORKSPACE}/secrets-trufflehog-scanner.json'
             }
         }
         
