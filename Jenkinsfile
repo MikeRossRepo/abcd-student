@@ -27,14 +27,6 @@ pipeline {
                 }
             }
         }
-
-        stage('Check Semgrep is installed') {
-            steps {
-                script {
-                    sh 'semgrep --version && pwd && ls -la ./'
-                }
-            }
-        }
         
         stage('[Semgrep] SAST Scan') {
             steps {
