@@ -16,7 +16,23 @@ pipeline {
             steps {
                 echo 'Hello!'
                 sh 'ls -la'
+            }   
+        }
+        stage('[Semgrep] SAST Scan') {
+            steps {
+                sh 'semgrep scan --config auto --json-output=${WORKSPACE}/sast-semgrep-scan.json'
+            }
+            post {
+                //always {
+                 //   defectDojoPublisher(artifact: 'sast-semgrep-scan.json', 
+                 //       productName: 'Juice Shop', 
+                 //       scanType: 'Semgrep JSON Report', 
+                 //       engagementName: '')
+                //}
             }
         }
+
+
+        
     }
 }
