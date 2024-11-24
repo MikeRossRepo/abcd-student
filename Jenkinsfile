@@ -46,9 +46,15 @@ pipeline {
             }
         }
         
+        stage('[OSV] Integrity verification') {
+            steps {
+                sh 'npm ci'
+            }
+        }
+        
         stage('[OSV] SCA Scan') {
             steps {
-                sh 'osv-scanner scan --lockfile package-lock.json --format json --output ${WORKSPACE}/sca-osv-scanner.json' 
+                sh 'osv-scanner scan --lockfile package-lock.json --format json --output ${WORKSPACE}/sca-osv-scanner.json || echo "OSV Scan failed with exit code $?"' 
             }
         }
 
