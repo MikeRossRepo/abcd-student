@@ -10,15 +10,24 @@ pipeline {
     }
     
     stages {
-        
+         stage('Set Git Configurations') {
+            steps {
+                script {
+                    // Set the Git config values
+                    sh 'git config http.postBuffer 500M'
+                    sh 'git config http.maxRequestBuffer 100M'
+                    sh 'git config core.compression 0'
+                    
+                    // Print the config values to verify
+                    sh 'git config --global --list'
+                }
+            }
+        }
         
         stage('Code checkout from GitHub') {
             steps {
                 script {
                     cleanWs()
-                    
-                    sh 'git config --global http.postBuffer 157286400'
-                    sh 'git config --global http.version HTTP/1.1'
                     git credentialsId: 'moje-repo', url: 'https://github.com/MikeRossRepo/abcd-student', branch: 'main'
                 }
             }
