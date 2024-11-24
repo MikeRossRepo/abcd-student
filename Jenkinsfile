@@ -24,10 +24,10 @@ pipeline {
                 always {
                     sh 'cat ${WORKSPACE}/sast-semgrep-scan.json'
                     
-                    //   defectDojoPublisher(artifact: 'sast-semgrep-scan.json', 
-                 //       productName: 'Juice Shop', 
-                 //       scanType: 'Semgrep JSON Report', 
-                 //       engagementName: '')
+                    defectDojoPublisher(artifact: '${WORKSPACE}/sast-semgrep-scan.json', 
+                        productName: 'Juice Shop', 
+                        scanType: 'Semgrep JSON Report', 
+                        engagementName: 'info@prim.net.pl')
                 }
             }
         }
@@ -39,10 +39,10 @@ pipeline {
                 always {
                     sh 'cat ${WORKSPACE}/secrets-trufflehog-scanner.json'
                     
-                    //   defectDojoPublisher(artifact: 'sast-semgrep-scan.json', 
-                 //       productName: 'Juice Shop', 
-                 //       scanType: 'Semgrep JSON Report', 
-                 //       engagementName: '')
+                    defectDojoPublisher(artifact: '${WORKSPACE}/secrets-trufflehog-scanner.json', 
+                        productName: 'Juice Shop', 
+                        scanType: 'Trufflehog Scan', 
+                        engagementName: 'info@prim.net.pl')
                 }
             }
 
@@ -58,10 +58,10 @@ pipeline {
                 always {
                     sh 'cat ${WORKSPACE}/sca-osv-scanner.json'
 
-                  //   defectDojoPublisher(artifact: 'sast-semgrep-scan.json', 
-                 //       productName: 'Juice Shop', 
-                 //       scanType: 'Semgrep JSON Report', 
-                 //       engagementName: '')
+                    defectDojoPublisher(artifact: '${WORKSPACE}/sca-osv-scanner.json', 
+                        productName: 'Juice Shop', 
+                        scanType: 'OSV Scan', 
+                        engagementName: 'info@prim.net.pl')
                     
                 }
             }
